@@ -1,0 +1,12 @@
+{
+  "id": "/app.html",
+  "name": "六爻 · 纳甲排盘",
+  "short_name": "六爻排盘",
+  "description": "六爻起卦与纳甲排盘工具",
+  "start_url": "/app.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f4ed",
+  "theme_color": "#153b36",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

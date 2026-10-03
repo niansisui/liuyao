@@ -1,0 +1,44 @@
+{
+  "name": "liuyao-desktop-web",
+  "version": "1.0.0",
+  "description": "支持手动与铜钱模拟起卦、京房纳甲排盘和规则模板参考的桌面与网页应用。",
+  "author": "六爻排盘",
+  "private": true,
+  "type": "module",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "start": "node server.js",
+    "desktop": "electron .",
+    "package": "electron-builder",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "electron": "^36.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.liuyao.divination",
+    "productName": "六爻排盘",
+    "directories": { "output": "release", "buildResources": "assets" },
+    "artifactName": "${productName}-安装程序-${version}-${arch}.${ext}",
+    "files": ["desktop/**/*", "web/**/*", "assets/**/*", "package.json"],
+    "win": { "target": "nsis", "icon": "assets/app.ico" },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "六爻排盘",
+      "installerIcon": "assets/app.ico",
+      "uninstallerIcon": "assets/app.ico",
+      "installerHeaderIcon": "assets/app.ico",
+      "uninstallDisplayName": "六爻排盘",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false
+    },
+    "mac": { "target": "dmg" },
+    "linux": { "target": "AppImage", "icon": "assets/app.png" }
+  }
+}

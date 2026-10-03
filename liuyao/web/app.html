@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#153b36">
+  <meta name="description" content="六爻起卦、纳甲排盘与逐项卦象解读。">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>六爻 · 纳甲排盘</title>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="六爻排盘首页"><span class="brand-mark">爻</span><span>六爻<span class="brand-sub">纳甲排盘</span></span></a>
+    <div class="top-actions"><button id="install-button" class="button button-quiet" hidden>安装应用</button><a class="top-link" href="#rules">排盘说明</a></div>
+  </header>
+  <main id="top" class="page-shell">
+    <section class="intro">
+      <div class="intro-copy"><p class="eyebrow">传统六爻 · 纳甲排盘</p><h1>把问题写下，<br><em>让卦象慢慢展开。</em></h1><p class="intro-text">手动录入或模拟铜钱起卦，查看卦象排盘与逐项说明。</p></div>
+      <div class="intro-seal" aria-hidden="true"><span>阴</span><b>☯</b><span>阳</span></div>
+    </section>
+
+    <section class="workbench card" aria-labelledby="question-title">
+      <div class="section-heading"><div><p class="eyebrow">第一步 · 起一卦</p><h2 id="question-title">记录当下所问</h2></div><span class="pill">京房纳甲 · 通用规则</span></div>
+      <label class="field-label" for="question">所问之事 <span class="muted">（可选）</span></label>
+      <textarea id="question" rows="2" maxlength="240" placeholder="例如：接下来三个月的工作发展如何？"></textarea>
+      <div class="settings-grid">
+        <label for="birth-date"><span class="field-label">出生年月日 <span class="muted">（选填）</span></span><input id="birth-date" type="date" autocomplete="bday"><span class="field-hint">仅用于记录求测者资料，不代替起卦日期。</span></label>
+      </div>
+
+      <div class="mode-row"><div><p class="field-label">选择起卦方式</p><p class="muted mode-hint">六爻自下而上记录，老阴/老阳为动爻</p></div><div class="segmented"><button type="button" class="mode-button active" data-mode="manual">手动录入</button><button type="button" class="mode-button" data-mode="coins">铜钱模拟</button></div></div>
+      <div class="coin-panel" id="coin-panel" hidden><div class="coin-stack" aria-hidden="true"><span>乾</span><span>坤</span><span>乾</span></div><p id="coin-status">点击下方按钮模拟掷六次铜钱，按初爻到上爻记录。</p></div>
+      <div class="line-editor" id="line-editor" aria-label="六爻输入"></div>
+      <div class="form-actions"><button id="cast-button" type="button" class="button button-secondary" hidden>模拟掷六次</button><button id="submit-button" type="button" class="button button-primary">生成排盘 <span aria-hidden="true">→</span></button></div>
+      <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="result" class="result-section" aria-live="polite" hidden>
+      <div class="section-heading result-heading"><div><p class="eyebrow">第二步 · 卦象与排盘</p><h2>本次排盘</h2></div><div class="result-actions"><button id="copy-button" class="button button-quiet" type="button">复制结果</button><button id="save-button" class="button button-quiet" type="button">保存记录</button></div></div>
+      <div id="question-summary" class="question-summary" hidden></div>
+      <div id="gua-summary" class="gua-summary"></div>
+      <div class="chart-card card"><div class="chart-scroll"><div class="chart-table" role="table" aria-label="六爻纳甲排盘">
+        <div class="chart-row chart-head" role="row"><span>伏神</span><span>纳甲</span><span>六亲</span><span>爻象</span><span>世应</span><span>变卦</span></div>
+        <div id="chart-lines"></div>
+      </div></div><div class="chart-foot"><span id="palace-summary"></span><span>出生日期仅作资料记录，不参与起卦日干支计算</span></div></div>
+      <div class="reading-card card"><div class="reading-title"><span class="reading-icon">解</span><div><p class="eyebrow">第三步 · 看懂卦象</p><h3 id="reading-heading">卦象逐项说明</h3></div></div><div id="reading-list" class="explanation-list"></div><p id="disclaimer" class="disclaimer"></p></div>
+      <div class="explanation-card card"><h3>排盘怎么看</h3><dl><div><dt>本卦与变卦</dt><dd>本卦表示起卦时的整体结构；动爻阴阳变化后形成变卦，可作为事情变化方向的参考，不单凭卦名判断吉凶。</dd></div><div><dt>动爻</dt><dd>老阴（六）变阳、老阳（九）变阴。动爻所在爻位、纳甲和六亲一起看，不能只看单一爻象。</dd></div><div><dt>世爻与应爻</dt><dd>世爻代表求测一方，应爻常作对方或外部环境的参照；两者关系需要结合所问具体分析。</dd></div><div><dt>六亲与用神</dt><dd>六亲按卦宫五行与各爻五行生克关系排出。不同问题所取用神不同，需结合问题判断，不宜用同一套结论套用所有事情。</dd></div><div><dt>排盘限制</dt><dd>本页不根据出生日期推算干支。未提供起卦日干支，因此不排六神、旬空及月令旺衰；相关判断请勿当作已计算结果。</dd></div></dl></div>
+    </section>
+
+    <section id="history-section" class="history-section" hidden><div class="section-heading"><div><p class="eyebrow">本机记录</p><h2>最近排盘</h2></div><button id="clear-history" class="button button-quiet" type="button">清空</button></div><div id="history-list" class="history-list"></div></section>
+
+    <section id="rules" class="rules-note"><p class="eyebrow">使用说明</p><p>默认按通用京房纳甲规则排盘。出生年月日只作为求测者资料保存，不用于推算起卦日干支。六亲取用及断卦因流派而异，页面说明用于理解排盘结构，不构成确定性预测或专业建议。</p></section>
+  </main>
+  <footer class="footer"><span>六爻 · 纳甲排盘</span><span>传统术数文化工具，仅供学习参考</span></footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
